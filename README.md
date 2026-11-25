@@ -24,13 +24,23 @@ A user management CRUD web application migrated from Spring MVC to Spring Boot, 
 ## Setup and Running
 
 1. **Create a MySQL database** (default database name in configuration: `crud_app_db`).
-2. **Configure database and MVC settings** in `src/main/resources/application.properties`:
-   ```properties
-   spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
-   spring.datasource.url=jdbc:mysql://localhost:3306/crud_app_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-   spring.datasource.username=root
-   spring.datasource.password=YOUR_PASSWORD
+2. **Set the database password via environment variable** (`SPRING_DATASOURCE_PASSWORD`). Do not store real passwords in version control.
 
-   spring.jpa.hibernate.ddl-auto=update
-   spring.jpa.show-sql=true
-   spring.mvc.hiddenmethod.filter.enabled=true
+   PowerShell:
+   ```powershell
+   $env:SPRING_DATASOURCE_PASSWORD='your_mysql_password'
+   ```
+
+   Linux / macOS:
+   ```bash
+   export SPRING_DATASOURCE_PASSWORD='your_mysql_password'
+   ```
+
+3. **Run the application** from the project root directory:
+   ```bash
+   mvn spring-boot:run
+   ```
+4. **Open the application** in your browser at:
+   ```text
+   http://localhost:8080/users
+   ```
